@@ -10,6 +10,8 @@ class Hotel extends StatefulWidget {
 class _HotelState extends State<Hotel> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: Text("hey"),
+    );
   }
 }

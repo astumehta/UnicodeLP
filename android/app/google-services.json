@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "798515219798",
+    "project_id": "unicodelp-bc91a",
+    "storage_bucket": "unicodelp-bc91a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798515219798:android:ccf6bdf3c25995b3d39af7",
+        "android_client_info": {
+          "package_name": "com.example.lp1unicode"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtMMp0hQeNXZ5yXALrIMu__x7Jfg_8Bow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:lp1unicode/screens/hotel.dart';
 import 'package:lp1unicode/screens/signup.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -39,7 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
                      const SizedBox(height:30,),
                       
                         const SizedBox(height: 15,),
-                      
+                        
+              
                         TextField(
                           controller: y,
                           keyboardType: TextInputType.emailAddress,
@@ -163,9 +165,15 @@ class _LoginScreenState extends State<LoginScreen> {
               });
               if( y.text=="" || z.text=="")
               {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              }
+              else{
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Hotel()),
                 );
               }
               

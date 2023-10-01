@@ -3,14 +3,19 @@
 
 
 import 'dart:async';
-
-
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lp1unicode/firebase_options.dart';
 import 'package:flutter/material.dart';
+
 import 'package:lp1unicode/screens/login.dart';
 
-
-void main()
-{
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 
@@ -26,7 +31,7 @@ class MyApp extends StatelessWidget
     return  MaterialApp
     (
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: ThemeData.light(),
       home: const SplashScreen());
   }
 }
@@ -48,9 +53,11 @@ class SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Image(image: AssetImage("images/giphy.gif")))
-    );
+    return Scaffold(
+      body: AnimatedSplashScreen(splash: const Image(image: AssetImage("images/hotel.gif"),width: 1000,), nextScreen: const LoginScreen()),
+            
+      );
+    
   }
   
   Future<void> wheretogo() async {
