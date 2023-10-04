@@ -57,7 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       }, 
                         child: const Padding(
                         padding: EdgeInsets.all(0.0),
-                        child: Text("Logout",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                        child: Text("Go Back",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                       
                       )
                       ,
@@ -239,20 +239,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               const SizedBox(height: 30,),
               
-              ElevatedButton(onPressed: ()  async {
+              ElevatedButton(onPressed: () {
               
-                   await FirebaseAuth.instance.createUserWithEmailAndPassword(email: y.text, password: z.text).then((value) => (){
-                
+                   FirebaseAuth.instance.createUserWithEmailAndPassword(email: y.text, password: z.text).then((value){
+              
                   Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Hotel()),
+                  MaterialPageRoute(builder: (context) => const Hotel())
                 );
-                }
-                ).onError((error, stackTrace) => (){
-                  print("ERROR ${error.toString()}");
-                });
-                
-              
+                },
+                );
               },
               style: const ButtonStyle(
                 elevation: MaterialStatePropertyAll(10),

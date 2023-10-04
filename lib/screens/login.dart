@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lp1unicode/screens/hotel.dart';
 import 'package:lp1unicode/screens/signup.dart';
@@ -158,11 +159,10 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 30,),
               
               ElevatedButton(onPressed: ()  async {
-                setState(() {
-                email=y.text;
-                password=z.text;
-                
-              });
+                FirebaseAuth.instance.signInWithEmailAndPassword(email: y.text, password: z.text).then((value) {Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Hotel()),
+                );});
               if( y.text=="" || z.text=="")
               {
                 Navigator.pushReplacement(
@@ -170,12 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   MaterialPageRoute(builder: (context) => const LoginScreen()),
                 );
               }
-              else{
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Hotel()),
-                );
-              }
+              
               
               },
               style: const ButtonStyle(

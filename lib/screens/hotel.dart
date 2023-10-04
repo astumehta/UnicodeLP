@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lp1unicode/screens/login.dart';
 
 class Hotel extends StatefulWidget {
   const Hotel({super.key});
@@ -10,8 +12,24 @@ class Hotel extends StatefulWidget {
 class _HotelState extends State<Hotel> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text("hey"),
+    return Scaffold(
+      body: TextButton(onPressed: () {
+
+                      FirebaseAuth.instance.signOut().then((value) {
+                      print("Signed Out");
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginScreen()),
+                    );});
+                        
+                      }, child: const Center(
+                        child: Padding(
+                        padding: EdgeInsets.all(0.0),
+                        child: Text(" Logout",style: TextStyle(color: Colors.black,fontSize: 12),),
+                      )
+                      )
+                      ,
+                      )
     );
   }
 }
