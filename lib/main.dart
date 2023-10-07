@@ -1,7 +1,3 @@
-
-
-
-
 import 'dart:async';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,26 +12,22 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   runApp(const MyApp());
 }
 
-
-class MyApp extends StatelessWidget
-{
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
 
   @override
-  Widget build(BuildContext context)
-  {
-    return  MaterialApp
-    (
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      home: const SplashScreen());
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.light(),
+        home: const SplashScreen());
   }
 }
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -44,29 +36,28 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
-  
-  
   @override
   void initState() {
-      wheretogo();
-      super.initState();
-      
+    wheretogo();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnimatedSplashScreen(splash: const Image(image: AssetImage("images/hotel.gif"),width: 1000,), nextScreen: const LoginScreen()),
-            
-      );
-    
+      body: AnimatedSplashScreen(
+          splash: const Image(
+            image: AssetImage("images/hotel.gif"),
+            width: 1000,
+          ),
+          nextScreen: const LoginScreen()),
+    );
   }
-  
+
   Future<void> wheretogo() async {
-    
-    Timer(const Duration(seconds: 4), () 
-    { 
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+    Timer(const Duration(seconds: 4), () {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()));
     });
   }
 }
