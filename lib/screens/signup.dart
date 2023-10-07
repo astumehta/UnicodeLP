@@ -241,7 +241,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               
               ElevatedButton(onPressed: () {
               
-                   FirebaseAuth.instance.createUserWithEmailAndPassword(email: y.text, password: z.text).then((value){
+                  FirebaseAuth.instance.createUserWithEmailAndPassword(email: y.text, password: z.text).then((value){
               
                   Navigator.push(
                   context,

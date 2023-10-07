@@ -10,6 +10,7 @@ import 'package:lp1unicode/firebase_options.dart';
 import 'package:flutter/material.dart';
 
 import 'package:lp1unicode/screens/login.dart';
+import 'package:lp1unicode/screens/signup.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,8 +48,9 @@ class SplashScreenState extends State<SplashScreen> {
   
   @override
   void initState() {
-      super.initState();
       wheretogo();
+      super.initState();
+      
   }
 
   @override

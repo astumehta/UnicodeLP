@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -108,8 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                    hintStyle: const TextStyle(
                                                         color: Color.fromRGBO(0,0,0,1),
                                                        ),
-                                   // ignore: prefer_const_constructors
-                                   prefixIcon: Icon(Icons.lock),
+                                   
+                                   prefixIcon: const Icon(Icons.lock),
                                    
                                    suffixIconColor: Colors.black,
                                    suffixIcon: GestureDetector(
