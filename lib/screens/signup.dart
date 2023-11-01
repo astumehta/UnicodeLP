@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lp1unicode/screens/hotel.dart';
 import 'package:lp1unicode/screens/login.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:lp1unicode/firebase_options.dart';
-
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -13,7 +10,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  @override
   bool passsecure1 = true;
 
   final TextEditingController y = TextEditingController();
@@ -73,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 30,
                 ),
                 TextField(
-                  obscureText: passsecure1,
+                  
                   controller: u,
                   style: const TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 1),
@@ -117,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   decoration: InputDecoration(
                     hintText: "Enter Email",
-                    suffixText: "Ex:abc@gmail.com",
+                    suffixText: "Ex:abc@gmail.com",labelStyle: const TextStyle(fontSize: 10),
                     hintStyle: const TextStyle(
                       color: Color.fromRGBO(0, 0, 0, 1),
                     ),

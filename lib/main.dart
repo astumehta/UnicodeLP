@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:lp1unicode/firebase_options.dart';
 import 'package:flutter/material.dart';
-
+import 'package:lp1unicode/screens/hotel.dart';
 import 'package:lp1unicode/screens/login.dart';
-import 'package:lp1unicode/screens/signup.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,19 +43,19 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: AnimatedSplashScreen(
           splash: const Image(
-            image: AssetImage("images/hotel.gif"),
-            width: 1000,
-          ),
-          nextScreen: const LoginScreen()),
+              image: AssetImage("images/hotel.gif"),
+              
+            ),
+          
+          nextScreen: const Hotel()),
     );
   }
 
   Future<void> wheretogo() async {
-    Timer(const Duration(seconds: 4), () {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()));
-    });
+    Timer(const Duration(seconds: 4), () => Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const LoginScreen())));
   }
 }
