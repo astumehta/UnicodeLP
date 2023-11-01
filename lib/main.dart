@@ -44,10 +44,10 @@ class SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      
       body: AnimatedSplashScreen(
           splash: const Image(
               image: AssetImage("images/hotel.gif"),
-              
             ),
           
           nextScreen: const Hotel()),

@@ -14,7 +14,7 @@ class _DetailsState extends State<Details> {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: Container(
-          color: Colors.black,
+          color: Colors.transparent,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: GNav(

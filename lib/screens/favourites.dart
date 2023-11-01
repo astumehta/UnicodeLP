@@ -84,72 +84,70 @@
 // }
 
 // //3
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
-class Favourites extends StatelessWidget {
-  final String imagestring;
-  final String hotelname;
-  final String price;
+// class Favourites extends StatelessWidget {
+//   final String imagestring;
+//   final String hotelname;
+//   final String price;
 
-  const Favourites(
-      {super.key,
-      required this.imagestring,
-      required this.hotelname,
-      required this.price});
+//   const Favourites(
+//       {super.key,
+//       required this.imagestring,
+//       required this.hotelname,
+//       required this.price});
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 0, 0, 0),
-      child: SizedBox(
-        height: 180,
-        child: Card(
-          elevation: 0,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 100,
-                  child: Card(
-                    shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-                    child: Image.asset(imagestring)),
-                  ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(8.0, 0, 8, 0),
-                      child: Text(hotelname,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20)),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                      child: SizedBox(
-                        
-                        child: Text("vhjrbgfhrscfddg"),
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     // ignore: sized_box_for_whitespace
+//     return Container(
+//   height: 250,
+//   width: 230,
+//   child: Card(
+//     semanticContainer: true,
+//     clipBehavior: Clip.antiAliasWithSaveLayer,
+//     shape: RoundedRectangleBorder(
+//       borderRadius: BorderRadius.circular(10.0),
+//       side: const BorderSide(
+//                                   width: 2,
+//                                   color: Color.fromARGB(255, 0, 0, 0))
+//     ),
+//     elevation: 5,
+//     margin: const EdgeInsets.fromLTRB(10, 4, 4, 2),
+//     child: Stack(
+//       children: <Widget>[
+//         Image.asset(
+//           "images/taj.jpg",
+//           fit: BoxFit.cover,
+//           width: double.infinity,
+//           height: double.infinity,
+//         ),
+//         Positioned(
+//           left: 10, 
+//           bottom: 10,
+//           child: Container(
+//             padding: const EdgeInsets.all(8),
+//             color: Colors.black.withOpacity(0.7),
+//             child: const Row(
+//               children: [
+//                 Text(
+//                   "Your Text Here",
+//                   style: TextStyle(
+//                     color: Colors.white, 
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ],
+//     ),
+//   ),
+// );
+
+    
+//   }
+// }
 
 
 
@@ -238,3 +236,76 @@ class Favourites extends StatelessWidget {
 //     );
 //   }
 // }
+import 'package:flutter/material.dart';
+
+class Favourites extends StatelessWidget {
+  final String imagestring;
+  final String hotelname;
+  final String price;
+
+  const Favourites(
+      {super.key,
+      required this.imagestring,
+      required this.hotelname,
+      required this.price});
+
+  @override
+  Widget build(BuildContext context) {
+    // ignore: sized_box_for_whitespace
+    return Container(
+  height: 250,
+  width: 230,
+  child: Card(
+    semanticContainer: true,
+    clipBehavior: Clip.antiAliasWithSaveLayer,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      side: const BorderSide(
+                                  width: 2,
+                                  color: Color.fromARGB(255, 0, 0, 0))
+    ),
+    elevation: 5,
+    margin: const EdgeInsets.fromLTRB(10, 4, 4, 2),
+    child: Stack(
+      children: <Widget>[
+        Image.asset(
+          "images/taj.jpg",
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+        ),
+        Positioned(
+          left: 10, 
+          bottom: 10,
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            color: Colors.black.withOpacity(0.7),
+            child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Hotel Name",
+                  style: TextStyle(
+                    color: Colors.white, 
+                    fontSize: 18
+                  ),
+                ),
+                Text("Description",style: TextStyle(color: Colors.white,fontSize: 10),)
+              ],
+            ),
+          ),
+        ),
+        const Positioned(
+          right: 10, 
+          bottom: 10,
+          child: Icon(Icons.star,color: Colors.amber,))
+      ],
+    ),
+  ),
+);
+
+    
+  }
+}
+
+
