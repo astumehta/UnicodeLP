@@ -44,18 +44,18 @@ class SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      
       body: AnimatedSplashScreen(
           splash: const Image(
-              image: AssetImage("images/hotel.gif"),
-            ),
-          
+            image: AssetImage("images/hotel.gif"),
+          ),
           nextScreen: const Hotel()),
     );
   }
 
   Future<void> wheretogo() async {
-    Timer(const Duration(seconds: 4), () => Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen())));
+    Timer(
+        const Duration(seconds: 4),
+        () => Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LoginScreen())));
   }
 }

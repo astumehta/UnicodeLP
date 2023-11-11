@@ -77,7 +77,7 @@
 //             subtitle: Text(price),
 //           ),
 //         ),
-      
+
 //       )
 //     );
 //   }
@@ -123,7 +123,7 @@
 //           height: double.infinity,
 //         ),
 //         Positioned(
-//           left: 10, 
+//           left: 10,
 //           bottom: 10,
 //           child: Container(
 //             padding: const EdgeInsets.all(8),
@@ -133,7 +133,7 @@
 //                 Text(
 //                   "Your Text Here",
 //                   style: TextStyle(
-//                     color: Colors.white, 
+//                     color: Colors.white,
 //                   ),
 //                 ),
 //               ],
@@ -145,11 +145,8 @@
 //   ),
 // );
 
-    
 //   }
 // }
-
-
 
 //4
 //import 'package:flutter/material.dart';
@@ -163,9 +160,9 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-      
+
 //         body: HorizontalCardList(),
-      
+
 //     );
 //   }
 // }
@@ -253,59 +250,56 @@ class Favourites extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: sized_box_for_whitespace
     return Container(
-  height: 250,
-  width: 230,
-  child: Card(
-    semanticContainer: true,
-    clipBehavior: Clip.antiAliasWithSaveLayer,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0),
-      side: const BorderSide(
-                                  width: 2,
-                                  color: Color.fromARGB(255, 0, 0, 0))
-    ),
-    elevation: 5,
-    margin: const EdgeInsets.fromLTRB(10, 4, 4, 2),
-    child: Stack(
-      children: <Widget>[
-        Image.asset(
-          "images/taj.jpg",
-          fit: BoxFit.cover,
-          width: double.infinity,
-          height: double.infinity,
-        ),
-        Positioned(
-          left: 10, 
-          bottom: 10,
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            color: Colors.black.withOpacity(0.7),
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hotel Name",
-                  style: TextStyle(
-                    color: Colors.white, 
-                    fontSize: 18
-                  ),
-                ),
-                Text("Description",style: TextStyle(color: Colors.white,fontSize: 10),)
-              ],
+      height: 250,
+      width: 230,
+      child: Card(
+        semanticContainer: true,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            side: const BorderSide(
+                width: 0, color: Color.fromARGB(255, 0, 0, 0))),
+        elevation: 5,
+        margin: const EdgeInsets.fromLTRB(10, 4, 4, 2),
+        child: Stack(
+          children: <Widget>[
+            Image.asset(
+              imagestring,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
             ),
-          ),
+            Positioned(
+              left: 10,
+              bottom: 10,
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.black.withOpacity(0.7),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Hotel Name",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    Text(
+                      "Description",
+                      style: TextStyle(color: Colors.white, fontSize: 10),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            const Positioned(
+                right: 10,
+                bottom: 10,
+                child: Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ))
+          ],
         ),
-        const Positioned(
-          right: 10, 
-          bottom: 10,
-          child: Icon(Icons.star,color: Colors.amber,))
-      ],
-    ),
-  ),
-);
-
-    
+      ),
+    );
   }
 }
-
-

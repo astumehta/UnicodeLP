@@ -22,7 +22,7 @@ class HotelInfo extends StatelessWidget {
           elevation: 20,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
-              side: BorderSide(width: 2, color: Color.fromARGB(255, 0, 0, 0))),
+              side: BorderSide(width: 1, color: Color.fromARGB(255, 0, 0, 0))),
           child: Padding(
             padding: const EdgeInsets.all(0.0),
             child: Row(
@@ -43,7 +43,7 @@ class HotelInfo extends StatelessWidget {
                     child: Stack(
                       children: <Widget>[
                         Image.asset(
-                          "images/taj.jpg",
+                          imagestring,
                           fit: BoxFit.cover,
                           width: double.infinity,
                           height: double.infinity,
@@ -59,47 +59,49 @@ class HotelInfo extends StatelessWidget {
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text("  "),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            hotelname,
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          const Text("Description")
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(58, 12, 0, 0),
-                      child: Column(
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              price,
+                              hotelname,
                               style: const TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w800),
-                              textAlign: TextAlign.end,
+                                  fontSize: 20, fontWeight: FontWeight.bold),
                             ),
-                            const Text(
-                              "+18%gst",
-                              style: TextStyle(
-                                  fontSize: 13, fontWeight: FontWeight.normal),
-                              textAlign: TextAlign.end,
-                            )
-                          ]),
-                    )
-                  ],
+                            const Text("Description")
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(58, 12, 0, 0),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                price,
+                                style: const TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.w800),
+                                textAlign: TextAlign.end,
+                              ),
+                              const Text(
+                                "+18%gst",
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.normal),
+                                textAlign: TextAlign.end,
+                              )
+                            ]),
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
