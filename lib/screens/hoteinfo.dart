@@ -19,16 +19,16 @@ class HotelInfo extends StatelessWidget {
         width: double.maxFinite,
         height: 110,
         child: Card(
-          elevation: 20,
+          elevation: 0,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
-              side: BorderSide(width: 1, color: Color.fromARGB(255, 0, 0, 0))),
+              side: BorderSide(width: 0.5, color: Color.fromARGB(255, 0, 0, 0))),
           child: Padding(
             padding: const EdgeInsets.all(0.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                   height: 100,
                   width: 130,
                   child: Card(
@@ -42,7 +42,7 @@ class HotelInfo extends StatelessWidget {
                     margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: Stack(
                       children: <Widget>[
-                        Image.asset(
+                        Image.network(
                           imagestring,
                           fit: BoxFit.cover,
                           width: double.infinity,
@@ -53,7 +53,7 @@ class HotelInfo extends StatelessWidget {
                             bottom: 10,
                             child: Icon(
                               Icons.star,
-                              color: Colors.amber,
+                              color: Colors.red,
                             ))
                       ],
                     ),
@@ -71,30 +71,37 @@ class HotelInfo extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              hotelname,
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
+                            
+                              SizedBox(
+                                width: 150,
+                                child: Text(
+                                  hotelname,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 3,
+                                  style: const TextStyle(
+                                      fontSize: 15, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            
                             const Text("Description")
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(58, 12, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(8, 12, 2, 0),
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
                                 price,
                                 style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w800),
+                                    fontSize: 12, fontWeight: FontWeight.w800),
                                 textAlign: TextAlign.end,
                               ),
                               const Text(
                                 "+18%gst",
                                 style: TextStyle(
-                                    fontSize: 13,
+                                    fontSize: 11,
                                     fontWeight: FontWeight.normal),
                                 textAlign: TextAlign.end,
                               )
