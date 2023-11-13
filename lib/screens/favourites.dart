@@ -39,6 +39,7 @@ class Favourites extends StatelessWidget {
                 child:  Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+<<<<<<< HEAD
                     SizedBox(
                       width: 170,
                       child: Text(
@@ -46,6 +47,11 @@ class Favourites extends StatelessWidget {
                         maxLines: 2,
                         style: const TextStyle(color: Colors.white, fontSize: 18),
                       ),
+=======
+                    Text(
+                      hotelname,
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
+>>>>>>> bb87cc690a94ee2cc3e9466cd78f0a4561ff1d51
                     ),
                     const Text(
                       "Description",
