@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 // import 'dart:convert';
 // import 'package:flutter/material.dart';
 // import 'package:lp1unicode/screens/details.dart';
@@ -621,8 +620,7 @@
 //   }
 // }
 
-//3
->>>>>>> bb87cc690a94ee2cc3e9466cd78f0a4561ff1d51
+
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -929,11 +927,9 @@ class _HotelState extends State<Hotel> {
                       //   ),
                       // ),
                       SizedBox(
-<<<<<<< HEAD
+
               height: 300,
-=======
-              height: 120,
->>>>>>> bb87cc690a94ee2cc3e9466cd78f0a4561ff1d51
+              
               child: FutureBuilder(
                 // Use the hotel.results?.data to get the list of hotels
                 future: fetchData(),
@@ -954,11 +950,10 @@ class _HotelState extends State<Hotel> {
                     );
                    
                   } else {
-<<<<<<< HEAD
+
                     return const CircularProgressIndicator(color: Colors.black);
-=======
-                    return const CircularProgressIndicator();
->>>>>>> bb87cc690a94ee2cc3e9466cd78f0a4561ff1d51
+
+
                   }
                 },
               ),
@@ -966,6 +961,7 @@ class _HotelState extends State<Hotel> {
                     ],
                   ),
                 ),
+            
                 // Sample HotelInfo widgets
                 FutureBuilder(
                 // Use the hotel.results?.data to get the list of hotels

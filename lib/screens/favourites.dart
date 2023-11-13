@@ -32,26 +32,24 @@ class Favourites extends StatelessWidget {
             Image.network(imagestring,width: double.infinity,height: double.infinity,fit: BoxFit.cover,),
             Positioned(
               left: 10,
-              bottom: 10,
+              top: 10,
               child: Container(
                 padding: const EdgeInsets.all(8),
                 color: Colors.black.withOpacity(0.7),
                 child:  Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-<<<<<<< HEAD
                     SizedBox(
                       width: 170,
                       child: Text(
                         hotelname,
                         maxLines: 2,
                         style: const TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-=======
+                      ),),
                     Text(
                       hotelname,
                       style: const TextStyle(color: Colors.white, fontSize: 18),
->>>>>>> bb87cc690a94ee2cc3e9466cd78f0a4561ff1d51
+
                     ),
                     const Text(
                       "Description",
