@@ -275,14 +275,14 @@ class Favourites extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(8),
                 color: Colors.black.withOpacity(0.7),
-                child: const Column(
+                child:  Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hotel Name",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      hotelname,
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
-                    Text(
+                    const Text(
                       "Description",
                       style: TextStyle(color: Colors.white, fontSize: 10),
                     )

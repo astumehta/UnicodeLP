@@ -28,7 +28,7 @@ class HotelInfo extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                   height: 100,
                   width: 130,
                   child: Card(
