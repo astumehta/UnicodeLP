@@ -635,7 +635,6 @@ import 'package:lp1unicode/screens/details.dart';
 import 'package:lp1unicode/screens/favourites.dart';
 import 'package:lp1unicode/screens/hoteinfo.dart';
 
-
 class Hotel extends StatefulWidget {
   const Hotel({Key? key}) : super(key: key);
 
@@ -644,49 +643,47 @@ class Hotel extends StatefulWidget {
 }
 
 class _HotelState extends State<Hotel> {
-  List<Map<String, dynamic>> hotellist = [];
+  // Define a list to store hotel data from the API
+  List<Map<String, dynamic>> hotels = [];
 
+  // Define a list to store hotel names
+  List<String> hotellist = [];
+
+  // Function to fetch data from the API
   Future<void> fetchData() async {
-    final url = Uri.parse('https://worldwide-hotels.p.rapidapi.com/detail');
-    final headers = {
-      'X-RapidAPI-Key': '4ab8efea36msh245d3ad941ffe9fp1cc4cajsnf810ce5018e2',
-      'X-RapidAPI-Host': 'worldwide-hotels.p.rapidapi.com',
-    };
-    final body = {
-      'location_id': '10301220',
-      'language': 'en_US',
-      'currency': 'USD',
-    };
+    const String apiKey = '4ab8efea36msh245d3ad941ffe9fp1cc4cajsnf810ce5018e2';
+    const String apiHost = 'worldwide-hotels.p.rapidapi.com';
+    const String apiUrl =
+        'https://worldwide-hotels.p.rapidapi.com/search?location_id=45963&language=English&currency=USD&offset=0';
 
-    try {
-      final response = await http.post(
-        url,
-        headers: headers,
-        body: body,
-      );
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {
+        'X-RapidAPI-Key': apiKey,
+        'X-RapidAPI-Host': apiHost,
+      },
+      body: {
+        "location_id": "45963",
+        "language": "English",
+        "currency": "USD",
+        "offset": "0"
+      },
+    );
+     
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      final List<dynamic> hotelData = data['results']['data'];
 
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> data = json.decode(response.body);
-        hotellist = extractHotelData(data);
-        print(data);
-      } else {
-        print('Request failed with status: ${response.statusCode}');
-        print('Error message: ${response.body}');
-      }
-    } catch (error) {
-      print('Error: $error');
+      // Extract hotel names from the data
+      hotellist = hotelData
+          .map((hotel) => hotel['name'].toString())
+          .toList();
+
+      // Store the full hotel data
+      hotels = hotelData.cast<Map<String, dynamic>>();
+    } else {
+      print('Error ${response.statusCode}');
     }
-  }
-
-  List<Map<String, dynamic>> extractHotelData(Map<String, dynamic> data) {
-    List<Map<String, dynamic>> hotels = [];
-    for (var hotel in data['results']['data']) {
-      hotels.add({
-        'name': hotel['name'],
-        'image': hotel['photo']['images']['thumbnail']['url'],
-      });
-    }
-    return hotels;
   }
 
   @override
@@ -724,7 +721,7 @@ class _HotelState extends State<Hotel> {
                 icon: Icons.info,
                 iconColor: Colors.black,
                 onPressed: () {
-                  fetchData();
+                  fetchData(); // Call the fetchData function here
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Details()),
@@ -896,25 +893,26 @@ class _HotelState extends State<Hotel> {
                           ),
                         ],
                       ),
+                      // Container to display the list of Favourites
                       Container(
-                        height: 120,
-                        child: SingleChildScrollView(
+                          height: 120,
+                          child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              for (var hotel in hotellist)
-                                Favourites(
-                                  imagestring: hotel['image'],
-                                  hotelname: hotel['name'],
-                                  price: "",
-                                ),
-                            ],
-                          ),
-                        ),
-                      ),
+                          itemCount: hotels.length, // Use the length of the hotels list
+                            itemBuilder: (context, index) {
+                              return Favourites(
+                                       imagestring: hotels[index]['photo']['images']['medium']['url'],
+                                       hotelname: hotels[index]['name'], // Use the hotel name from the API
+                                       price: hotels[index]['price'], // You may need to extract the price from the API response
+                                        );
+                                           },
+                                          ),
+                                        ),
+
                     ],
                   ),
                 ),
+                // Sample HotelInfo widgets
                 const HotelInfo(
                     imagestring: "images/taj.jpg",
                     hotelname: "Hotel Name",
