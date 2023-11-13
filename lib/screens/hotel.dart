@@ -631,6 +631,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:lp1unicode/model.dart';
 import 'package:lp1unicode/screens/details.dart';
 import 'package:lp1unicode/screens/favourites.dart';
 import 'package:lp1unicode/screens/hoteinfo.dart';
@@ -644,7 +645,7 @@ class Hotel extends StatefulWidget {
 
 class _HotelState extends State<Hotel> {
   // Define a list to store hotel data from the API
-  List<Map<String, dynamic>> hotels = [];
+  List<Data> hotels = [];
 
   // Define a list to store hotel names
   List<String> hotellist = [];
@@ -680,7 +681,7 @@ class _HotelState extends State<Hotel> {
           .toList();
 
       // Store the full hotel data
-      hotels = hotelData.cast<Map<String, dynamic>>();
+      hotels = hotelData.cast<Data>();
     } else {
       print('Error ${response.statusCode}');
     }

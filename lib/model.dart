@@ -173,7 +173,7 @@ class Data {
     if (json['awards'] != null) {
       awards = <Null>[];
       json['awards'].forEach((v) {
-        awards!.add(Null.fromJson(v));
+  
       });
     }
     doubleclickZone = json['doubleclick_zone'];
@@ -233,7 +233,7 @@ class Data {
     if (json['nearest_metro_station'] != null) {
       nearestMetroStation = <Null>[];
       json['nearest_metro_station'].forEach((v) {
-        nearestMetroStation!.add(Null.fromJson(v));
+      
       });
     }
     phone = json['phone'];
@@ -247,7 +247,7 @@ class Data {
     if (json['amenities'] != null) {
       amenities = <Null>[];
       json['amenities'].forEach((v) {
-        amenities!.add(Null.fromJson(v));
+        
       });
     }
     ownerWebsite = json['owner_website'];
@@ -268,7 +268,6 @@ class Data {
     }
     data['api_detail_url'] = this.apiDetailUrl;
     if (this.awards != null) {
-      data['awards'] = this.awards!.map((v) => v.toJson()).toList();
     }
     data['doubleclick_zone'] = this.doubleclickZone;
     data['preferred_map_engine'] = this.preferredMapEngine;
@@ -317,8 +316,7 @@ class Data {
     data['parent_display_name'] = this.parentDisplayName;
     data['is_jfy_enabled'] = this.isJfyEnabled;
     if (this.nearestMetroStation != null) {
-      data['nearest_metro_station'] =
-          this.nearestMetroStation!.map((v) => v.toJson()).toList();
+      
     }
     data['phone'] = this.phone;
     data['website'] = this.website;
@@ -329,7 +327,7 @@ class Data {
     data['is_candidate_for_contact_info_suppression'] =
         this.isCandidateForContactInfoSuppression;
     if (this.amenities != null) {
-      data['amenities'] = this.amenities!.map((v) => v.toJson()).toList();
+      
     }
     data['owner_website'] = this.ownerWebsite;
     data['email'] = this.email;
@@ -501,7 +499,7 @@ class BusinessListings {
     if (json['desktop_contacts'] != null) {
       desktopContacts = <Null>[];
       json['desktop_contacts'].forEach((v) {
-        desktopContacts!.add(Null.fromJson(v));
+        
       });
     }
     if (json['mobile_contacts'] != null) {
@@ -515,8 +513,7 @@ class BusinessListings {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.desktopContacts != null) {
-      data['desktop_contacts'] =
-          this.desktopContacts!.map((v) => v.toJson()).toList();
+      
     }
     if (this.mobileContacts != null) {
       data['mobile_contacts'] =
@@ -562,7 +559,7 @@ class SpecialOffers {
     if (json['desktop'] != null) {
       desktop = <Null>[];
       json['desktop'].forEach((v) {
-        desktop!.add(Null.fromJson(v));
+       
       });
     }
     if (json['mobile'] != null) {
@@ -576,7 +573,7 @@ class SpecialOffers {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.desktop != null) {
-      data['desktop'] = this.desktop!.map((v) => v.toJson()).toList();
+      
     }
     if (this.mobile != null) {
       data['mobile'] = this.mobile!.map((v) => v.toJson()).toList();
