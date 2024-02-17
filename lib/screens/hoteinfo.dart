@@ -4,12 +4,14 @@ class HotelInfo extends StatelessWidget {
   final String imagestring;
   final String hotelname;
   final String price;
+  final String description;
 
   const HotelInfo(
       {super.key,
       required this.imagestring,
       required this.hotelname,
-      required this.price});
+      required this.price,
+      required this.description,});
 
   @override
   Widget build(BuildContext context) {
@@ -88,12 +90,14 @@ class HotelInfo extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 12, 2, 0),
+                        padding: const EdgeInsets.fromLTRB(6, 12, 0, 0),
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
                                 price,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
                                 style: const TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.w800),
                                 textAlign: TextAlign.end,
