@@ -1,23 +1,25 @@
-import 'dart:developer';
+import 'dart:math';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:lp1unicode/screens/hotel.dart';
 import 'package:lp1unicode/screens/favorites_screen.dart';
+import 'package:lp1unicode/screens/hotel.dart';
 
 class Details extends StatefulWidget {
   final String hotelname;
   final String price;
   final String imagestring;
   final String description;
+  final String username;
 
   const Details({
     Key? key,
     required this.hotelname,
     required this.price,
     required this.imagestring,
-    required this.description,
+    required this.description, required this.username,
   }) : super(key: key);
 
   @override
@@ -51,13 +53,13 @@ class _DetailsState extends State<Details> {
         });
       }
     } catch (e) {
-      log("Error checking hotel data: $e");
+      log("Error checking hotel data: $e" as num);
     }
   }
 
   Future<void> addData(String name, String price) async {
     if (name.isEmpty || price.isEmpty) {
-      log("Enter fields");
+      log("Enter fields" as num);
       return;
     }
 
@@ -69,15 +71,15 @@ class _DetailsState extends State<Details> {
       setState(() {
         isStarColored = true;
       });
-      log("Data inserted");
+      log("Data inserted" as num);
     } catch (e) {
-      log("Error inserting data: $e");
+      log("Error inserting data: $e" as num);
     }
   }
 
   Future<void> deleteData(String name, String price) async {
     if (name.isEmpty || price.isEmpty) {
-      log("Name and price cannot be empty");
+      log("Name and price cannot be empty" as num);
       return;
     }
 
@@ -93,24 +95,25 @@ class _DetailsState extends State<Details> {
         setState(() {
           isStarColored = false;
         });
-        log("Document deleted successfully");
+        log("Document deleted successfully" as num);
       } else {
-        log("Document not found");
+        log("Document not found" as num);
       }
     } catch (e) {
-      log("Error deleting document: $e");
+      log("Error deleting document: $e" as num);
     }
   }
 
-  void triggernotification()
-  {
-      AwesomeNotifications().createNotification(content: NotificationContent(id: 10, channelKey: 'basic_channel',title: 'Hotel booked !!'));
+  void triggernotification() {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(id: 10, channelKey: 'basic_channel', title: 'Hotel booked !!'));
   }
 
-  void triggernotification1()
-  {
-      AwesomeNotifications().createNotification(content: NotificationContent(id: 20, channelKey: 'basic_channel',title: 'Hotel added to favorites !!'));
+  void triggernotification1() {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(id: 20, channelKey: 'basic_channel', title: 'Hotel added to favorites !!'));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,7 +134,7 @@ class _DetailsState extends State<Details> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Hotel()),
+                    MaterialPageRoute(builder: (context) =>  Hotel(name: widget.username,)),
                   );
                 },
               ),
@@ -147,6 +150,7 @@ class _DetailsState extends State<Details> {
                         price: widget.price,
                         imagestring: widget.imagestring,
                         description: widget.description,
+                        username: widget.username,
                       ),
                     ),
                   );
@@ -167,381 +171,221 @@ class _DetailsState extends State<Details> {
           ),
         ),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 245, 252, 255),
-              Color.fromRGBO(255, 255, 255, 1),
-              Color.fromRGBO(255, 255, 255, 1)
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: 500,
-                width: double.maxFinite,
-                color: Colors.transparent,
-                child: ClipPath(
-                  clipper: const ShapeBorderClipper(
-                    shape: ContinuousRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(30),
-                        bottomLeft: Radius.circular(30),
-                      ),
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Card(
-                        elevation: 4,
-                        child: Image.network(
-                          widget.imagestring,
-                          width: double.infinity,
-                          height: double.infinity,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Positioned(
-                        right: 20,
-                        top: 30,
-                        child: GestureDetector(
-                          onTap: () {
-
-                            setState(() {
-                              isStarColored = !isStarColored;
-                            });
-                            if (isStarColored) {
-                              _DetailsState().triggernotification1();
-                              addData(widget.hotelname, widget.price);
-                            } else {
-                              deleteData(widget.hotelname, widget.price);
-                            }
-                          },
-                          child: Stack(
-                            children: [
-                              const Icon(
-                                Icons.star_border,
-                                size: 50,
-                                color: Colors.black,
-                              ),
-                              isStarColored
-                                  ? const Icon(
-                                      Icons.star,
-                                      size: 50,
-                                      color: Colors.redAccent,
-                                    )
-                                  : const SizedBox(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 245, 252, 255),
+                  Color.fromRGBO(255, 255, 255, 1),
+                  Color.fromRGBO(255, 255, 255, 1)
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
+            ),
+          ),
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  height: 500,
+                  width: double.infinity,
+                  color: Colors.transparent,
+                  child: ClipPath(
+                    clipper: const ShapeBorderClipper(
+                      shape: ContinuousRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(30),
+                          bottomLeft: Radius.circular(30),
+                        ),
+                      ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    child: Stack(
                       children: [
-                        SizedBox(
-                          width: 250,
-                          child: Text(
-                            widget.hotelname,
-                            maxLines: 2,
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        Card(
+                          elevation: 4,
+                          child: Image.network(
+                            widget.imagestring,
+                            width: double.infinity,
+                            height: double.infinity,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 2),
-                          child: Text(
-                            widget.price,
-                            maxLines: 2,
-                            style: const TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    const Divider(
-                      color: Colors.grey,
-                      thickness: 2,
-                    ),
-                    Container(
-                      color: const Color.fromARGB(255, 235, 246, 250),
-                      child: Padding(
-                        padding: const EdgeInsets.all(14.0),
-                        child: Column(
-                          children: [
-                            Text(widget.description),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Positioned(
+                          right: 20,
+                          top: 30,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isStarColored = !isStarColored;
+                              });
+                              if (isStarColored) {
+                                _DetailsState().triggernotification1();
+                                addData(widget.hotelname, widget.price);
+                              } else {
+                                deleteData(widget.hotelname, widget.price);
+                              }
+                            },
+                            child: Stack(
                               children: [
-                                const Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text("Get Directions    "),
-                                        CircleAvatar(
-                                          backgroundColor: Colors.black,
-                                          child: Icon(Icons.location_on),
-                                        ),
-                                      ],
-                                    )
-                                  ],
+                                const Icon(
+                                  Icons.star_border,
+                                  size: 50,
+                                  color: Colors.black,
                                 ),
-                                SizedBox(
-                                  height: 110,
-                                  width: 150,
-                                  child: Image.asset(
-                                    "images/map.jpg",
-                                    height: 110,
-                                    width: 100,
-                                  ),
-                                )
+                                isStarColored
+                                    ? const Icon(
+                                        Icons.star,
+                                        size: 50,
+                                        color: Colors.redAccent,
+                                      )
+                                    : const SizedBox(),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 12, 0, 2),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Activities to look out for",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    const Divider(
-                      color: Colors.grey,
-                      thickness: 2,
-                    ),
-                    Container(
-                      width: double.maxFinite,
-                      color: const Color.fromARGB(255, 235, 246, 250),
-                      child: const Padding(
-                        padding: EdgeInsets.all(14.0),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text("->Fitness centre"),
-                              Text(
-                                "->Beachfront",
-                                textAlign: TextAlign.left,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 250,
+                            child: Text(
+                              widget.hotelname,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text("->Spa facilities"),
-                              SizedBox(
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 5, 2),
+                            child: Text(
+                              widget.price,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const Divider(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        thickness: 2,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 2.0, // Adjust the width of the border as needed
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(14.0),
+                          child: Column(
+                            children: [
+                              Text(widget.description),
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Column(
+                                  const Column(
                                     children: [
                                       Row(
                                         children: [
-                                          Icon(
-                                            Icons.nature_people_sharp,
-                                            color: Colors.greenAccent,
+                                          Text("Get Directions    "),
+                                          CircleAvatar(
+                                            backgroundColor: Colors.black,
+                                            child: Icon(Icons.location_on),
                                           ),
-                                          Text("Lushness")
                                         ],
                                       )
                                     ],
                                   ),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.nature_people_sharp,
-                                            color: Colors.greenAccent,
-                                          ),
-                                          Text("Free WIFI")
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.nature_people_sharp,
-                                            color: Colors.greenAccent,
-                                          ),
-                                          Text("Parking")
-                                        ],
-                                      )
-                                    ],
+                                  SizedBox(
+                                    height: 110,
+                                    width: 150,
+                                    child: Image.asset(
+                                      "images/map.jpg",
+                                      height: 110,
+                                      width: 100,
+                                    ),
                                   )
                                 ],
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.nature_people_sharp,
-                                            color: Colors.greenAccent,
-                                          ),
-                                          Text("Swimming")
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.nature_people_sharp,
-                                            color: Colors.greenAccent,
-                                          ),
-                                          Text("Breakfast")
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.nature_people_sharp,
-                                            color: Colors.greenAccent,
-                                          ),
-                                          Text("Spa")
-                                        ],
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.nature_people_sharp,
-                                            color: Colors.greenAccent,
-                                          ),
-                                          Text("Lushness")
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.nature_people_sharp,
-                                            color: Colors.greenAccent,
-                                          ),
-                                          Text("Lushness")
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.nature_people_sharp,
-                                            color: Colors.greenAccent,
-                                          ),
-                                          Text("Lushness"),
-                                          
-                                        ],
-                                      )
-                                    ],
-                                  )
-                                ],
-                              )
                             ],
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const CircleAvatar(
-                          backgroundImage: AssetImage("images/gpay.png"),
-                        ),
-                        const CircleAvatar(
-                          backgroundImage: AssetImage("images/mastercard.png"),
-                        ),
-                        const CircleAvatar(
-                          backgroundImage: AssetImage("images/visa.jpg"),
-                        ),
-                        SizedBox(
-                          height: 50,
-                          width: 200,
-                          child: Card(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ElevatedButton(onPressed: (){
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          const Spacer(), // Add Spacer widget to push the card to the right
+                          Card(
+                            elevation: 0,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero,
+                              side: BorderSide(
+                                color: Colors.black,
+                                width: 1.0, // Adjust the width of the border as needed
+                              ),
+                            ),
+                            child: SizedBox(
+                              width: 200,
+                              height: 60,
+                              child: TextButton(
+                                onPressed: () {
                                   _DetailsState().triggernotification();
-                                }, child: const Text("Book"))
-                              ],
+                                },
+                                style: ButtonStyle(
+                                  shape: MaterialStateProperty.all(
+                                    const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.zero,
+                                    ),
+                                  ),
+                                ),
+                                child: const Text(
+                                  "Book Now",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

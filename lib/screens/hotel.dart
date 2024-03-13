@@ -6,19 +6,17 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lp1unicode/model.dart';
 import 'package:lp1unicode/screens/details.dart';
 import 'package:lp1unicode/screens/favourites.dart';
-import 'package:lp1unicode/screens/hoteinfo.dart';
+import 'package:lp1unicode/screens/hotelinfo.dart';
 
 class Hotel extends StatefulWidget {
-  const Hotel({Key? key}) : super(key: key);
+  final String name;
+  const Hotel({Key? key, required this.name}) : super(key: key);
 
   @override
   State<Hotel> createState() => _HotelState();
 }
 
 class _HotelState extends State<Hotel> {
-  // Define a list to store hotel data from the API
-  List<Data> hotels = [];
-
   // Function to fetch data from the API
   Future<List<Data>> fetchData() async {
     const String apiKey = '4ab8efea36msh245d3ad941ffe9fp1cc4cajsnf810ce5018e2';
@@ -75,25 +73,60 @@ class _HotelState extends State<Hotel> {
                 const SizedBox(
                   height: 10,
                 ),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(17, 12, 18, 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "HotelNow",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 25),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Stack(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "Hey, ${widget.name}",
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 19,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Let's find the best",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 35,
+                                      ),
+                                    ),
+                                    Text(
+                                      "hotels around the world",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 35,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          const CircleAvatar(
+                            radius: 25,
+                            backgroundColor: Colors.black,
+                            child: CircleAvatar(
+                              radius: 22,
+                              backgroundImage: AssetImage("images/blank.jpg"),
+                            ),
+                          ),
+                        ],
                       ),
-                      CircleAvatar(
-                        radius: 25,
-                        backgroundColor: Colors.black,
-                        child: CircleAvatar(
-                          radius: 22,
-                          backgroundImage: AssetImage("images/blank.jpg"),
-                        ),
-                      )
                     ],
                   ),
                 ),
@@ -104,9 +137,9 @@ class _HotelState extends State<Hotel> {
                     child: Card(
                       elevation: 20,
                       shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          side: BorderSide(
-                              width: 3, color: Color.fromARGB(255, 0, 0, 0))),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        side: BorderSide(width: 0.5, color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
                       child: Column(
                         children: [
                           const SizedBox(
@@ -124,7 +157,7 @@ class _HotelState extends State<Hotel> {
                                 Text(
                                   " Search your stay",
                                   style: GoogleFonts.poppins(),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -140,51 +173,51 @@ class _HotelState extends State<Hotel> {
                     children: [
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                side: BorderSide(color: Colors.black)),
-                            fixedSize: const Size(80, 25),
-                            backgroundColor: Colors.white),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            side: BorderSide(color: Colors.black),
+                          ),
+                          fixedSize: const Size(80, 25),
+                          backgroundColor: Colors.white,
+                        ),
                         onPressed: () {},
-                        child: const Icon(Icons.airplanemode_active,
-                            color: Colors.black),
+                        child: const Icon(Icons.airplanemode_active, color: Colors.black),
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                side: BorderSide(color: Colors.black)),
-                            fixedSize: const Size(80, 25),
-                            backgroundColor: Colors.white),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            side: BorderSide(color: Colors.black),
+                          ),
+                          fixedSize: const Size(80, 25),
+                          backgroundColor: Colors.white,
+                        ),
                         onPressed: () {},
-                        child: const Icon(Icons.house_outlined,
-                            color: Colors.black),
+                        child: const Icon(Icons.house_outlined, color: Colors.black),
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                side: BorderSide(color: Colors.black)),
-                            fixedSize: const Size(80, 25),
-                            backgroundColor: Colors.white),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            side: BorderSide(color: Colors.black),
+                          ),
+                          fixedSize: const Size(80, 25),
+                          backgroundColor: Colors.white,
+                        ),
                         onPressed: () {},
-                        child: const Icon(Icons.car_crash_outlined,
-                            color: Colors.black),
+                        child: const Icon(Icons.car_crash_outlined, color: Colors.black),
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                side: BorderSide(color: Colors.black)),
-                            fixedSize: const Size(80, 25),
-                            backgroundColor: Colors.white),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            side: BorderSide(color: Colors.black),
+                          ),
+                          fixedSize: const Size(80, 25),
+                          backgroundColor: Colors.white,
+                        ),
                         onPressed: () {},
-                        child:
-                            const Icon(Icons.location_on, color: Colors.black),
+                        child: const Icon(Icons.location_on, color: Colors.black),
                       ),
                     ],
                   ),
@@ -193,33 +226,29 @@ class _HotelState extends State<Hotel> {
                   height: 10,
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 2, 10, 8),
+                  padding: const EdgeInsets.fromLTRB(5, 2, 5, 8),
                   child: Column(
                     children: [
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            padding: const EdgeInsets.only(left: 15),
                             child: Text(
-                              "Favourites this week",
-                              style: TextStyle(
+                              "Recommended Hotels",
+                              style: GoogleFonts.poppins(
                                 fontSize: 22,
-                                fontWeight: FontWeight.bold,
                                 letterSpacing: 1.5,
                               ),
                             ),
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Icon(Icons.filter_alt),
-                              SizedBox(
-                                width: 10,
-                              ),
+                              Icon(Icons.filter_list_alt),
+                              SizedBox(width: 10),
                               Text(
                                 "See all",
-                                style: TextStyle(fontSize: 15),
+                                style: GoogleFonts.poppins(fontSize: 15),
                               ),
                             ],
                           ),
@@ -231,8 +260,7 @@ class _HotelState extends State<Hotel> {
                           // Use the hotel.results?.data to get the list of hotels
                           future: fetchData(),
                           builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                    ConnectionState.done &&
+                            if (snapshot.connectionState == ConnectionState.done &&
                                 snapshot.hasData) {
                               return ListView.builder(
                                 scrollDirection: Axis.horizontal,
@@ -244,22 +272,23 @@ class _HotelState extends State<Hotel> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => Details(
-                                            hotelname:
-                                                snapshot.data?[index].name ?? "",
+                                            hotelname: snapshot.data?[index].name ?? "",
                                             price: snapshot.data?[index].price ?? "",
-                                            imagestring: snapshot.data?[index]
-                                                    .photo?.images?.original?.url ??
-                                                "",
+                                            imagestring:
+                                                snapshot.data?[index].photo?.images?.original?.url ?? "",
                                             description: snapshot.data?[index].description ?? "",
+                                            username: widget.name,
                                           ),
                                         ),
                                       );
                                     },
                                     child: Favourites(
                                       hotelname: snapshot.data?[index].name ?? "",
-                                      imagestring: snapshot.data?[index].photo?.images?.original?.url ?? "",
+                                      imagestring:
+                                          snapshot.data?[index].photo?.images?.original?.url ?? "",
                                       price: snapshot.data?[index].price ?? "",
                                       description: snapshot.data?[index].description ?? "",
+                                      username: widget.name,
                                     ),
                                   );
                                 },
@@ -267,7 +296,9 @@ class _HotelState extends State<Hotel> {
                             } else if (snapshot.hasError) {
                               return Text('Error: ${snapshot.error}');
                             } else {
-                              return const CircularProgressIndicator(color: Colors.black);
+                              return const Center(
+                                child: CircularProgressIndicator(color: Colors.black),
+                              );
                             }
                           },
                         ),
@@ -295,6 +326,7 @@ class _HotelState extends State<Hotel> {
                                     price: hotel.price ?? "",
                                     imagestring: hotel.photo?.images?.original?.url ?? "",
                                     description: hotel.description ?? "",
+                                    username: widget.name,
                                   ),
                                 ),
                               );
@@ -311,12 +343,14 @@ class _HotelState extends State<Hotel> {
                     } else if (snapshot.hasError) {
                       return Text('Error: ${snapshot.error}');
                     } else {
-                      return const CircularProgressIndicator(color: Colors.black,);
+                      return const Center(
+                        child: CircularProgressIndicator(color: Colors.black),
+                      );
                     }
                   },
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

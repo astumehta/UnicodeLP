@@ -14,6 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool passsecure = true;
   final TextEditingController y = TextEditingController();
   final TextEditingController z = TextEditingController();
+  final TextEditingController username=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +65,42 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 15),
                   Column(
                     children: [
+                      TextField(
+                        controller: username,
+                        
+                        style: const TextStyle(
+                          color: Color.fromRGBO(0, 0, 0, 1),
+                        ),
+                        decoration: InputDecoration(
+                          hintText: "Enter your Name",
+                          hintStyle: const TextStyle(
+                            color: Color.fromRGBO(0, 0, 0, 1),
+                          ),
+                          prefixIcon: Icon(Icons.person),
+                          prefixIconColor: const Color.fromRGBO(24, 49, 24, 1),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          filled: true,
+                          fillColor: const Color.fromRGBO(255, 255, 255, 1)
+                              .withOpacity(0.2),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              width: 2.0,
+                              style: BorderStyle.solid,
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(0)),
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              width: 2.0,
+                              style: BorderStyle.solid,
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(0)),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
                       TextField(
                         controller: y,
                         keyboardType: TextInputType.emailAddress,
@@ -160,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const Hotel(),
+                                    builder: (context) =>  Hotel(name: username.text,),
                                   ),
                                 );
                               })

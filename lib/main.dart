@@ -62,7 +62,7 @@ AwesomeNotifications().isNotificationAllowed().then((isAllowed){
           splash: const Image(
             image: AssetImage("images/hotel.gif"),
           ),
-          nextScreen: const LoginScreen()),
+          nextScreen: const Hotel(name: "Astu",)),
     );
   }
 
